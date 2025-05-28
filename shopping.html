@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>상품 상세 페이지</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white text-gray-900">
+    <div class="max-w-7xl mx-auto px-4 py-16 flex flex-col lg:flex-row gap-12">
+        <!-- 왼쪽: 이미지 영역 -->
+        <div class="w-full lg:w-2/5 flex flex-col items-center">
+            <!-- 대표 이미지: 1:1 비율, 더 크게(520px), 중앙 정렬 -->
+            <div class="flex items-center justify-center bg-white" style="width: 520px; height: 520px;">
+                <img id="mainImage" src="/alya01.webp" alt="Alya Statue"
+                    class="object-contain w-full h-full"
+                    onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'text-gray-400 text-sm flex items-center justify-center text-center w-full h-full\'>이미지를 불러올 수 없습니다</div>';" />
+            </div>
+            <!-- 썸네일: 가로 정렬, 크기는 그대로 -->
+            <div id="thumbnails" class="flex gap-2 mt-6 w-full max-w-md justify-center">
+                <!-- 썸네일 이미지들은 JS에서 렌더링 -->
+            </div>
+        </div>
+
+        <!-- 오른쪽: 정보 영역 -->
+        <div class="w-full lg:w-3/5 flex flex-col gap-4">
+            <div class="text-xs text-gray-500 mb-2">Home / GORILLA</div>
+            <h1 class="text-3xl font-bold leading-tight">
+                GORILLA 51 SoftLabel
+            </h1>
+            <div class="text-sm text-gray-400 mb-1">TENT40708</div>
+            <div class="text-2xl font-bold mb-1">₩19,999</div>
+            <div class="text-xs text-gray-500 mb-4">Shipping calculated at checkout.</div>
+            <div class="flex items-center gap-4 mb-4">
+                <span class="tracking-widest">QUANTITY</span>
+                <button class="px-3 py-1 border rounded">-</button>
+                <span class="w-8 text-center">1</span>
+                <button class="px-3 py-1 border rounded">+</button>
+            </div>
+            <div class="flex gap-3 mb-4">
+                <button class="border px-6 py-2 rounded">Pay Now</button>
+                <button class="border px-6 py-2 rounded">Deposit</button>
+            </div>
+            <div class="flex flex-col gap-1 text-sm mb-2">
+                <div class="flex items-center gap-2"><span>📦</span> Estimated Delivery: MID 10/2025</div>
+                <div class="flex items-center gap-2"><span>🚚</span> Free kr shipping</div>
+                <div class="flex items-center gap-2"><span>🌍</span> Korea shipping available</div>
+            </div>
+            <div class="text-xs text-gray-500 mb-2">For International delivery price please contact us</div>
+            <button class="w-full bg-black text-white py-3 rounded text-lg font-semibold mb-4">ORDER</button>
+            <div class="text-sm text-gray-600 leading-relaxed border-t pt-4">
+                This high-quality production of 'Gorilla51' .
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function changeQty(diff) {
+            const qtyEl = document.querySelector('.w-8');
+            let qty = parseInt(qtyEl.innerText);
+            qty = Math.max(1, qty + diff);
+            qtyEl.innerText = qty;
+        }
+    </script>
+
+    <script>
+        // 대표 이미지와 썸네일 이미지 목록 (대표 이미지 포함)
+        const imageList = [
+            '/alya01.webp',
+            '/alya03.webp',
+            '/alya04.webp',
+            '/alya05.webp',
+            '/alya06.webp',
+        ];
+        let currentIndex = 0;
+
+        function renderThumbnails() {
+            const thumbnailsDiv = document.getElementById('thumbnails');
+            thumbnailsDiv.innerHTML = '';
+            imageList.forEach((src, idx) => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.className =
+                    'w-16 h-16 object-cover border-2 ' +
+                    (idx === currentIndex ? 'border-blue-500' : '') +
+                    (idx === 0 ? ' border-black' : '');
+                img.style.cursor = 'pointer';
+                img.onclick = () => {
+                    currentIndex = idx;
+                    document.getElementById('mainImage').src = src;
+                    renderThumbnails();
+                };
+                thumbnailsDiv.appendChild(img);
+            });
+        }
+
+        // 대표 이미지가 바뀌면 썸네일도 동기화
+        document.addEventListener('DOMContentLoaded', () => {
+            renderThumbnails();
+        });
+    </script>
+</body>
+
+</html>
