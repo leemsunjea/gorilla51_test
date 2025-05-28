@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GORILLA 51</title>
     <!-- <link rel="stylesheet" href="/css/rendingpage01.css"> -->
-    <link rel="stylesheet" href="/header01.css">
+    <!-- <link rel="stylesheet" href="/css/header01.css"> -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- GSAP 라이브러리 추가 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -17,6 +17,216 @@
 
     @import url('https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap');
 
+    /* header 숨기기용 클래스 */
+    .header--hidden {
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .nexon {
+        font-family: 'NexonLv1Gothic';
+        font-weight: 400;
+    }
+
+    /* reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    em {
+        font-style: normal;
+    }
+
+    /* headerType - 완전 투명 설정 */
+    .header__wrap {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        /* 완전 투명 배경 */
+        background-color: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        box-shadow: none;
+        transition: all 0.3s ease;
+    }
+
+    /* 헤더 숨김 상태 */
+    .header__wrap.header--hidden {
+        transform: translateY(-100%);
+        background-color: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    /* 스크롤 상태 - 약간의 블러만 적용 */
+    .header__wrap.scrolled {
+        background-color: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.01);
+    }
+
+    .header__inner {
+        width: 100%;
+        max-width: 1200px;
+        min-height: 64px;
+        height: auto;
+        margin: 0 auto;
+        padding: 12px 20px;
+        display: grid;
+        grid-template-columns: 1fr 2fr 0.93fr;
+        align-items: center;
+        box-sizing: border-box;
+        transition: all 0.3s ease;
+    }
+
+    .header__logo {
+        font-size: 30px;
+        font-weight: 700;
+        text-transform: uppercase;
+        justify-self: start;
+    }
+
+    .header__logo img {
+        max-width: 100px;
+        height: auto;
+        display: block;
+    }
+
+    .header__logo em {
+        font-size: 18px;
+        font-weight: 400;
+    }
+
+    .header__menu {
+        justify-self: center;
+        text-align: center;
+        font-family: 'Nexon Lv1 Gothic', sans-serif;
+        margin-left: 60px;
+    }
+
+    .header__menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: clamp(20px, 4vw, 40px);
+        flex-wrap: wrap;
+    }
+
+    .header__menu ul li {
+        display: flex;
+        align-items: center;
+    }
+
+    .header__menu ul li a {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #000;
+        text-decoration: none;
+        padding: 13px 20px;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+
+    /* 호버 효과 - 완전 투명 */
+    .header__menu li a:hover {
+        background-color: transparent;
+        border-radius: 5px;
+        transform: translateY(-1px);
+        color: #333;
+        /* 호버 시 색상만 변경 */
+    }
+
+    .header__member {
+        justify-self: end;
+        text-align: right;
+    }
+
+    .header__member a {
+        font-size: 16px;
+        border: 1px solid rgba(0, 0, 0, 0.6);
+        padding: 5px 15px;
+        border-radius: 50px;
+        background-color: transparent;
+        transition: all 0.3s ease;
+    }
+
+    .header__member a:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        border-color: rgba(0, 0, 0, 0.8);
+        transform: translateY(-1px);
+    }
+
+    .font {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    /* 반응형 디자인 */
+    @media (max-width: 768px) {
+        .header__wrap {
+            background-color: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+
+        .header__wrap.scrolled {
+            background-color: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+
+        .header__inner {
+            padding: 8px 15px;
+            gap: 10px;
+        }
+
+        .header__menu {
+            margin-left: 0;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .header__wrap {
+            background-color: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+
+        .header__wrap.scrolled {
+            background-color: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+
+        .header__inner {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto auto;
+            text-align: center;
+            gap: 10px;
+        }
+
+        .header__menu {
+            margin-left: 0;
+        }
+    }
 
     .second-page::before {
         content: '';
@@ -375,7 +585,7 @@
             <nav class="header__menu" class="font">
                 <ul>
                     <li class="menu-item"><a href="#">story</a></li>
-                    <li class="menu-item"><a href="mschf.html">store</a></li>
+                    <li class="menu-item"><a href="/shopping/mschf.html">store</a></li>
                     <li class="menu-item"><a href="#">about</a></li>
                     <!-- <li><a href="#"></a></li> -->
                     <li class="menu-item"><a href="#">information</a></li>
@@ -391,7 +601,8 @@
         <!-- 첫 번째 페이지 -->
         <div class="text-background cal-sans-regular">
             <!-- 배경 이미지를 HTML 요소로 추가 - 조정 가능한 클래스들 적용 -->
-<img src="image_bg01.png" alt="Background" style="width: 100%;" class="bg-image-element image-size-xl image-pos-bottom">
+            <img src="image_bg01.png" alt="Background" style="width: 100%;"
+                class="bg-image-element image-size-xl image-pos-bottom">
 
             <div class="top-text gradient-text-1 text-line" data-delay="0">
                 GORILLA51GORILLA51GORILLA51GORILLA51
