@@ -7,6 +7,8 @@
     <title>GORILLA 51</title>
     <!-- <link rel="stylesheet" href="/css/rendingpage01.css"> -->
     <!-- <link rel="stylesheet" href="/css/header01.css"> -->
+     <link rel="stylesheet" href="fonts/anurati.css">
+    <link rel="stylesheet" href="styles.css?v=1.1">
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- GSAP 라이브러리 추가 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -17,35 +19,25 @@
 
     @import url('https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap');
 
+    @import url('https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap');
+
     /* header 숨기기용 클래스 */
     .header--hidden {
         transform: translateY(-100%);
         transition: transform 0.3s ease-in-out;
     }
 
-    .nexon {
-        font-family: 'NexonLv1Gothic';
-        font-weight: 400;
-    }
-
-    /* reset */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    a {
-        text-decoration: none;
-        color: #000;
-    }
-
-    li {
-        list-style: none;
-    }
-
-    em {
+    @font-face {
+        font-family: 'anuratiregular';
+        src: url('./fonts/anurati-regular-webfont.woff2') format('woff2'),
+            url('./fonts/anurati-regular-webfont.woff') format('woff');
+        font-weight: normal;
         font-style: normal;
+    }
+
+    /* 정확한 클래스 타겟팅 */
+    .title {
+        font-family: 'anuratiregular', Arial, sans-serif !important;
     }
 
     /* headerType - 완전 투명 설정 */
@@ -115,7 +107,7 @@
     .header__menu {
         justify-self: center;
         text-align: center;
-        font-family: 'Nexon Lv1 Gothic', sans-serif;
+        /* font-family: 'Nexon Lv1 Gothic', sans-serif; 이 줄 제거 */
         margin-left: 60px;
     }
 
@@ -136,6 +128,7 @@
     }
 
     .header__menu ul li a {
+        font-family: 'title', 'Nexon Lv1 Gothic', sans-serif !important;
         font-size: 1.3rem;
         font-weight: 600;
         color: #000;
@@ -372,7 +365,7 @@
 
 
     .outline-regular {
-        font-family: "Londrina Outline", sans-serif;
+        font-family: "Bungee Outline", sans-serif;
         font-weight: 400;
         font-style: normal;
     }
@@ -507,31 +500,31 @@
     }
 
     .gradient-text-1 {
-        background: linear-gradient(to bottom, #FFFFFF, #EAEAEA);
+        background: linear-gradient(to bottom, #CCCCCC, #888888);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
 
     .gradient-text-2 {
-        background: linear-gradient(to bottom, #EAEAEA, #CCCCCC);
+        background: linear-gradient(to bottom, #888888, #666666);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
 
     .gradient-text-3 {
-        background: linear-gradient(to bottom, #CCCCCC, #A0A0A0);
+        background: linear-gradient(to bottom, #666666, #444444);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
 
     .gradient-text-4 {
-        background: linear-gradient(to bottom, #A0A0A0, #555555);
+        background: linear-gradient(to bottom, #444444, #222222);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
 
     .gradient-text-5 {
-        background: linear-gradient(to bottom, #555555, #1A1A1A);
+        background: linear-gradient(to bottom, #222222, #000000);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
@@ -576,30 +569,27 @@
 
 <body>
     <header id="headerType" class="header__wrap nexon">
-        <div class="header__inner">
-            <div class="header__logo logo-container">
-                <a href="#">
-                    <img src="tm_mark.jpg" alt="GORILLA 51 Logo" style="height: auto; max-width: 88%; margin-left: 1%;">
-                </a>
-            </div>
-            <nav class="header__menu" class="font">
+        <div class="header__inner title">
+            <a href="#">
+                <img src="tm_mark.jpg" alt="GORILLA 51 Logo" style="height: auto; max-width: 88%; margin-left: 1%;">
+            </a>
+            <nav class="header__menu">
                 <ul>
                     <li class="menu-item"><a href="#">story</a></li>
                     <li class="menu-item"><a href="mschf.html">store</a></li>
                     <li class="menu-item"><a href="#">about</a></li>
-                    <!-- <li><a href="#"></a></li> -->
                     <li class="menu-item"><a href="#">information</a></li>
                 </ul>
             </nav>
             <div class="header__member login-btn">
-                <a href="#">로그인</a>
+                <a href="#">LOGIN</a>
             </div>
         </div>
     </header>
 
     <div class="hero-section">
         <!-- 첫 번째 페이지 -->
-        <div class="text-background cal-sans-regular">
+        <div class="text-background outline-regular">
             <!-- 배경 이미지를 HTML 요소로 추가 - 조정 가능한 클래스들 적용 -->
             <img src="image_bg01.png" alt="Background" style="width: 100%;"
                 class="bg-image-element image-size-xl image-pos-bottom">
